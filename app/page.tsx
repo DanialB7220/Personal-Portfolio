@@ -24,7 +24,6 @@ import {
   Coffee,
   TrendingUp,
   Award,
-  Terminal,
   Target,
   Brain,
   Building,
@@ -132,110 +131,88 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="container mx-auto px-4 text-center relative z-10">
+          {/* Clean, minimal avatar */}
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
+            initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, ease: "backOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="mb-8"
           >
-            <div className="relative">
-              <motion.div
-                className="absolute -inset-8 rounded-full bg-gradient-to-r from-primary via-accent to-purple-600 opacity-20 blur-2xl"
-                animate={{ 
-                  rotate: 360,
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{ 
-                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                }}
-              />
-              <Avatar className="w-48 h-48 mx-auto border-4 border-primary/50 shadow-2xl relative z-10">
-                <AvatarImage src="/avatar.svg" alt="Danial Bhatti" />
-                <AvatarFallback className="text-4xl bg-gradient-to-br from-primary to-accent text-white font-bold">
-                  DB
-                </AvatarFallback>
-              </Avatar>
-            </div>
+            <Avatar className="w-24 h-24 mx-auto border-2 border-white/20 shadow-lg">
+              <AvatarImage src="/avatar.svg" alt="Danial Bhatti" />
+              <AvatarFallback className="text-xl bg-gradient-to-br from-primary/80 to-accent/80 text-white font-semibold">
+                DB
+              </AvatarFallback>
+            </Avatar>
           </motion.div>
 
+          {/* Clean typography */}
           <motion.div
-            initial={{ y: 50, opacity: 0 }}
+            initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <h1 className="text-6xl md:text-8xl font-bold mb-6">
-              <span className="gradient-text">Danial</span>{" "}
-              <motion.span 
-                className="gradient-text"
-            animate={{
-                  textShadow: [
-                    "0 0 20px rgba(99, 102, 241, 0.5)",
-                    "0 0 40px rgba(139, 92, 246, 0.8)",
-                    "0 0 20px rgba(99, 102, 241, 0.5)"
-                  ]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                Bhatti
-              </motion.span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white">
+              Danial Bhatti
             </h1>
-            
-            <div className="text-2xl md:text-4xl h-16 flex items-center justify-center">
-              <TypingAnimation 
+            <div className="text-xl md:text-2xl lg:text-3xl text-primary font-medium mb-6">
+              <TypingAnimation
                 texts={typingTexts}
-                speed={120}
-                className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-purple-400"
+                speed={100}
+                className="text-primary"
               />
             </div>
           </motion.div>
 
           <motion.p
-            initial={{ y: 50, opacity: 0 }}
+            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-lg md:text-xl text-white mb-12 max-w-4xl mx-auto leading-relaxed"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Crafting the future with{" "}
-            <span className="text-primary font-semibold">cutting-edge AI solutions</span>,{" "}
-            <span className="text-accent font-semibold">scalable web applications</span>, and{" "}
-            <span className="text-purple-400 font-semibold">innovative user experiences</span> that make a real impact.
+            Computer Science student and software engineer passionate about building{" "}
+            <span className="text-primary font-medium">AI-powered solutions</span> and{" "}
+            <span className="text-accent font-medium">scalable web applications</span> that solve real-world problems.
           </motion.p>
 
           <motion.div
-            initial={{ y: 50, opacity: 0 }}
+            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-wrap justify-center gap-4 mb-16"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-white shadow-2xl group">
-                <Link href="/projects">
-                  <Rocket className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                  Explore Projects
-                  <Sparkles className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </motion.div>
-            
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="outline" asChild size="lg" className="hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/10 group border-primary/50">
-                <Link href="/skills">
-                  <Terminal className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
-                  View Skills
-                </Link>
-              </Button>
-            </motion.div>
-            
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="outline" asChild size="lg" className="hover:bg-gradient-to-r hover:from-primary/10 hover:to-accent/10 group border-accent/50">
-                <Link href="https://github.com/DanialB7220" target="_blank">
-                  <Github className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                  GitHub Profile
-                </Link>
-              </Button>
-            </motion.div>
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-4"
+            >
+              <Link href="/projects">
+                View Projects
+              </Link>
+            </Button>
+
+            <Button
+              variant="outline"
+              asChild
+              size="lg"
+              className="border-white/20 text-white hover:bg-white/10 px-8 py-4"
+            >
+              <Link href="/skills">
+                Skills & Experience
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              asChild
+              size="lg"
+              className="text-white hover:bg-white/10 px-8 py-4"
+            >
+              <Link href="https://github.com/DanialB7220" target="_blank">
+                GitHub
+              </Link>
+            </Button>
           </motion.div>
 
           {/* Real Stats Section */}
@@ -251,13 +228,13 @@ export default function Home() {
                 className="relative group"
                 whileHover={{ scale: 1.1, y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
-              >
+            >
                 <HolographicCard className="text-center p-6">
                   <motion.div 
                     className="flex justify-center mb-3 text-primary"
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  >
+            >
                     {stat.icon}
                   </motion.div>
                   <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">

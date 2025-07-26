@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { FloatingAIAssistant } from "@/components/ui/floating-ai-assistant";
-import { Home, User, Code, Mail, Users } from "lucide-react";
+import { MobileNavbar } from "@/components/ui/mobile-navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,13 +28,6 @@ export const metadata: Metadata = {
   },
 };
 
-const navItems = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/skills", label: "Skills", icon: User },
-  { href: "/projects", label: "Projects", icon: Code },
-  { href: "/leadership", label: "Leadership", icon: Users },
-];
-
 export default function RootLayout({
   children,
 }: {
@@ -52,26 +44,7 @@ export default function RootLayout({
                 Danial Bhatti
               </Link>
               
-              <div className="flex items-center gap-2">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Button key={item.href} variant="ghost" asChild className="hidden sm:flex">
-                      <Link href={item.href} className="flex items-center gap-2">
-                        <Icon className="w-4 h-4" />
-                        {item.label}
-                      </Link>
-                    </Button>
-                  );
-                })}
-                
-                <Button variant="outline" asChild className="ml-2">
-                  <Link href="mailto:daao165@gmail.com">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Contact
-                  </Link>
-                </Button>
-              </div>
+              <MobileNavbar />
             </div>
           </div>
         </nav>
