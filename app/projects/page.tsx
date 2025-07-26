@@ -4,22 +4,16 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { HolographicCard } from "@/components/ui/holographic-card";
 import { PerformanceOptimizedBackground } from "@/components/ui/performance-optimized-background";
 import { 
   Search, 
-  Filter, 
   Github, 
   ExternalLink, 
-  Calendar,
-  Star,
-  GitFork,
   Code,
   Sparkles,
   ArrowLeft,
-  Globe,
   Play,
   Download
 } from "lucide-react";

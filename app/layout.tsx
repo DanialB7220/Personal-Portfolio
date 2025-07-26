@@ -4,7 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FloatingAIAssistant } from "@/components/ui/floating-ai-assistant";
-import { Home, User, Zap, Code, Briefcase, Mail, Users } from "lucide-react";
+import { Home, User, Code, Mail, Users } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 

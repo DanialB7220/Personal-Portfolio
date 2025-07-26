@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { HolographicCard } from "@/components/ui/holographic-card";
 import { PerformanceOptimizedBackground } from "@/components/ui/performance-optimized-background";
 import { Badge } from "@/components/ui/badge";
@@ -68,7 +68,7 @@ export default function LeadershipPage() {
                 
                 <div className="space-y-6">
                   <p className="text-white opacity-90 text-lg leading-relaxed">
-                    Co-founded my university's first Software Engineering Club to promote hands-on coding, 
+                    Co-founded my university&apos;s first Software Engineering Club to promote hands-on coding, 
                     project collaboration, and peer mentorship among students.
                   </p>
                   
@@ -99,8 +99,8 @@ export default function LeadershipPage() {
                         "Mentored 30+ fellow students in programming fundamentals and career guidance",
                         "Established partnerships with tech companies for guest speakers and internship opportunities",
                         "Created study groups that improved members' programming skills by 40% on average"
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-start gap-3">
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-3">
                           <Sparkles className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                           <span className="text-sm text-white opacity-90 leading-relaxed">{item}</span>
                         </li>
@@ -171,8 +171,8 @@ export default function LeadershipPage() {
                         "Bridge cultural heritage with modern business innovation and technology",
                         "Coordinate with university career centers to provide entrepreneurship resources",
                         "Lead workshops on business planning, startup funding, and tech entrepreneurship"
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-start gap-3">
+                      ].map((item) => (
+                        <li key={item} className="flex items-start gap-3">
                           <Rocket className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                           <span className="text-sm text-white opacity-90 leading-relaxed">{item}</span>
                         </li>
@@ -217,8 +217,8 @@ export default function LeadershipPage() {
                   description: "Every initiative should serve a purpose. I focus on creating programs and opportunities that solve real problems and improve lives in meaningful ways.",
                   color: "text-accent"
                 }
-              ].map((value, index) => (
-                <div key={value.title} className="text-center">
+                               ].map((value) => (
+                  <div key={value.title} className="text-center">
                   <div className={`mx-auto mb-4 ${value.color}`}>
                     {value.icon}
                   </div>
@@ -278,7 +278,7 @@ export default function LeadershipPage() {
                 icon: <Award className="w-6 h-6" />,
                 color: "bg-yellow-500/20 border-yellow-500/30"
               }
-            ].map((item, index) => (
+            ].map((item) => (
               <HolographicCard key={item.title} className={`text-center ${item.color}`}>
                 <div className="text-primary mb-3 flex justify-center">
                   {item.icon}

@@ -40,7 +40,7 @@ export function FloatingOrbs({ count = 8, className = "" }: FloatingOrbsProps) {
       speed: Math.random() * 0.5 + 0.2,
     }));
     setOrbs(newOrbs);
-  }, [count]);
+  }, [count, colors]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {

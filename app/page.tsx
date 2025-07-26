@@ -17,7 +17,6 @@ import {
   Github, 
   Linkedin, 
   Mail, 
-  Briefcase, 
   ChevronDown,
   Rocket,
   Sparkles,
@@ -31,7 +30,6 @@ import {
   Building,
   Zap,
   Code,
-  Globe,
   MessageSquareText,
   Users
 } from "lucide-react"
@@ -247,7 +245,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.9 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
           >
-            {realStats.map((stat, index) => (
+            {realStats.map((stat) => (
               <motion.div
                 key={stat.label}
                 className="relative group"
@@ -476,7 +474,7 @@ export default function Home() {
                   description: "Understand my learning journey, achievements, and future aspirations",
                   color: "text-purple-400"
                 }
-              ].map((item, index) => (
+              ].map((item) => (
                 <div key={item.title} className="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-6 border-2 border-white/20 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
                   <div className={`${item.color} mb-4 flex justify-center`}>
                     {item.icon}

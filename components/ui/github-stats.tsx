@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, GitFork, Eye, Code, Calendar, TrendingUp } from "lucide-react";
+import { Star, GitFork, Code, Calendar, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface GitHubRepo {
