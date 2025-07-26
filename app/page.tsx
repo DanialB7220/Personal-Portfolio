@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 import { Badge } from "@/components/ui/badge"
 import { HolographicCard } from "@/components/ui/holographic-card"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
@@ -131,32 +131,17 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="container mx-auto px-4 text-center relative z-10">
-          {/* Clean, minimal avatar */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-8"
-          >
-            <Avatar className="w-24 h-24 mx-auto border-2 border-white/20 shadow-lg">
-              <AvatarImage src="/avatar.svg" alt="Danial Bhatti" />
-              <AvatarFallback className="text-xl bg-gradient-to-br from-primary/80 to-accent/80 text-white font-semibold">
-                DB
-              </AvatarFallback>
-            </Avatar>
-          </motion.div>
-
           {/* Clean typography */}
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             className="mb-8"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-white">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white">
               Danial Bhatti
             </h1>
-            <div className="text-xl md:text-2xl lg:text-3xl text-primary font-medium mb-6">
+            <div className="text-xl md:text-2xl lg:text-3xl text-primary font-medium mb-8">
               <TypingAnimation
                 texts={typingTexts}
                 speed={100}
