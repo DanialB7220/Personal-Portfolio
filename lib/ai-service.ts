@@ -171,6 +171,61 @@ class AIService {
       { role: 'user', content: message }
     ], 1000);
   }
+
+  async ragQuery(documentContent: string, documentName: string, userQuestion: string): Promise<string> {
+    try {
+      const systemPrompt = `You are an expert document analysis assistant. You have been given a document titled "${documentName}" and need to answer questions about it based ONLY on the content provided. 
+
+Guidelines:
+- Only use information from the provided document content
+- If the answer isn't in the document, say so clearly
+- Provide specific quotes or references when possible
+- Be concise but comprehensive
+- If asked to summarize, focus on the most important points`;
+
+      const contextualPrompt = `Document: "${documentName}"
+
+Content:
+${documentContent}
+
+Question: ${userQuestion}
+
+Please provide a detailed answer based solely on the document content above.`;
+
+      const response = await fetch('https://api.chutes.ai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.apiKey}`,
+        },
+        body: JSON.stringify({
+          model: 'deepseek-v3-0324',
+          messages: [
+            {
+              role: 'system',
+              content: systemPrompt
+            },
+            {
+              role: 'user',
+              content: contextualPrompt
+            }
+          ],
+          max_tokens: 1500,
+          temperature: 0.3 // Lower temperature for more focused answers
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.choices[0]?.message?.content || 'Sorry, I could not analyze the document.';
+    } catch (error) {
+      console.error('RAG Query Error:', error);
+      return 'Sorry, I encountered an error while analyzing the document.';
+    }
+  }
 }
 
 export const aiService = new AIService();

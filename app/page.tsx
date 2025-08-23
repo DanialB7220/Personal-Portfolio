@@ -67,7 +67,7 @@ export default function Home() {
   const experience = [
     {
       company: "KLYR Media",
-      role: "Software Engineer & AI Intern",
+      role: "Software Engineer Intern",
       period: "May 2025 - July 2025",
       location: "New York, NY",
       type: "Internship",
@@ -80,7 +80,7 @@ export default function Home() {
     },
     {
       company: "StudyFetch",
-      role: "Software Engineer & AI Intern", 
+      role: "Software Engineer Intern", 
       period: "February 2025 - May 2025",
       location: "New York, NY",
       type: "Internship",
@@ -94,7 +94,7 @@ export default function Home() {
     },
     {
       company: "Total Construction Corporation",
-      role: "Software Engineer & Finance Intern",
+      role: "Software Engineer Intern",
       period: "September 2023 - February 2024", 
       location: "New York, NY",
       type: "Internship",
@@ -110,7 +110,7 @@ export default function Home() {
   const achievements = [
     { 
       title: "Software Engineering Club", 
-      subtitle: "Treasurer & Co-Founder", 
+      subtitle: "Co-Founder", 
       period: "Sept 2023 - Present",
       description: "Co-founded the university's first Software Engineering Club to promote hands-on coding, project collaboration, and peer mentorship. Organized 10+ technical workshops and coding sessions on web development, Git, and AI tools, increasing engagement by 200%.",
       icon: <Award className="w-5 h-5" />

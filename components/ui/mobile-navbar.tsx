@@ -3,13 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Home, User, Code, Mail, Users, Menu, X } from "lucide-react";
+import { Home, User, Code, Mail, Users, Menu, X, Brain } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/skills", label: "Skills", icon: User },
   { href: "/projects", label: "Projects", icon: Code },
   { href: "/leadership", label: "Leadership", icon: Users },
+  { href: "/document-ai", label: "Document AI", icon: Brain },
 ];
 
 export function MobileNavbar() {
