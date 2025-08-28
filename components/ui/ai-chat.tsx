@@ -112,7 +112,7 @@ export function AIChat({
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: "I'm experiencing technical difficulties. Please try again later.",
+        content: "I'm experiencing technical difficulties. Please try again later. If this persists, check that the API key is properly configured.",
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMessage]);

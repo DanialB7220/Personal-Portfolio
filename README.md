@@ -36,8 +36,8 @@ cd Personal-Portfolio
 npm install
 
 # Set up environment variables
-cp .env.example .env
-# Add your NEXT_PUBLIC_CHUTES_API_KEY
+# Create a .env.local file in the project root and add:
+# NEXT_PUBLIC_CHUTES_API_KEY=your_api_key_here
 
 # Run the development server
 npm run dev
@@ -52,6 +52,17 @@ Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 - **Live Tech Discussion** - Real-time technical discussions
 - **Smart Contact System** - Intelligent inquiry handling
 - **Global AI Assistant** - Floating chat for general questions
+
+### Setting Up AI Chatbot
+
+The chatbot uses Chutes AI (DeepSeek-V3) for intelligent responses. To enable full functionality:
+
+1. **Get a free API key** from [Chutes AI](https://chutes.ai)
+2. **Create a `.env.local` file** in the project root
+3. **Add your API key**: `NEXT_PUBLIC_CHUTES_API_KEY=your_api_key_here`
+4. **Restart the development server**
+
+Without the API key, the chatbot will provide helpful fallback responses with setup instructions.
 
 ## 📱 Pages
 

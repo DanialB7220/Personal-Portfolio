@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PerformanceOptimizedBackground } from "@/components/ui/performance-optimized-background";
 import { AIChat } from "@/components/ui/ai-chat";
-import { aiService } from "@/lib/ai-service";
+import { aiService, testAPIKey } from "@/lib/ai-service";
 import { 
   Upload, 
   FileText, 
@@ -38,17 +38,37 @@ export default function DocumentAIPage() {
   const [selectedDocument, setSelectedDocument] = useState<UploadedDocument | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [showChat, setShowChat] = useState(false);
+  const [apiTestResult, setApiTestResult] = useState<any>(null);
 
   const handleRAGQuery = async (message: string) => {
     if (!selectedDocument) {
       return "Please select a document first to ask questions about it.";
     }
     
-    return await aiService.ragQuery(
-      selectedDocument.content, 
-      selectedDocument.name, 
-      message
-    );
+    try {
+      return await aiService.ragQuery(
+        selectedDocument.content, 
+        selectedDocument.name, 
+        message
+      );
+    } catch (error) {
+      console.error('RAG Query Error:', error);
+      return "I encountered an error while processing your question. Please try again or check that the API key is properly configured.";
+    }
+  };
+
+  const testAPI = async () => {
+    try {
+      const result = await testAPIKey();
+      setApiTestResult(result);
+      console.log('API Test Result:', result);
+    } catch (error) {
+      setApiTestResult({
+        success: false,
+        message: 'Test failed with error',
+        details: error instanceof Error ? error.message : String(error)
+      });
+    }
   };
 
   const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
@@ -61,7 +81,30 @@ export default function DocumentAIPage() {
 
   const handleFiles = async (files: File[]) => {
     for (const file of files) {
-      if (file.type.includes('text') || file.type.includes('pdf') || file.type.includes('document')) {
+      // Check if file is a supported text-based format
+      const supportedTypes = [
+        'text/plain',
+        'text/markdown',
+        'text/csv',
+        'application/json',
+        'application/xml',
+        'text/html',
+        'text/css',
+        'text/javascript',
+        'application/javascript'
+      ];
+      
+      const isSupported = supportedTypes.includes(file.type) || 
+                         file.name.endsWith('.txt') || 
+                         file.name.endsWith('.md') || 
+                         file.name.endsWith('.json') ||
+                         file.name.endsWith('.csv') ||
+                         file.name.endsWith('.xml') ||
+                         file.name.endsWith('.html') ||
+                         file.name.endsWith('.css') ||
+                         file.name.endsWith('.js');
+
+      if (isSupported) {
         const newDoc: UploadedDocument = {
           id: Math.random().toString(36).substr(2, 9),
           name: file.name,
@@ -74,9 +117,15 @@ export default function DocumentAIPage() {
 
         setDocuments(prev => [...prev, newDoc]);
 
-        // Simulate document processing
+        // Process the document
         try {
           const text = await file.text();
+          
+          // Check if content is not empty
+          if (text.trim().length === 0) {
+            throw new Error('Document is empty');
+          }
+          
           setDocuments(prev => 
             prev.map(doc => 
               doc.id === newDoc.id 
@@ -84,7 +133,8 @@ export default function DocumentAIPage() {
                 : doc
             )
           );
-                 } catch {
+        } catch (error) {
+          console.error('File processing error:', error);
           setDocuments(prev => 
             prev.map(doc => 
               doc.id === newDoc.id 
@@ -93,6 +143,8 @@ export default function DocumentAIPage() {
             )
           );
         }
+      } else {
+        console.warn(`Unsupported file type: ${file.type} - ${file.name}`);
       }
     }
   };
@@ -210,7 +262,7 @@ export default function DocumentAIPage() {
                     Drop documents here or click to upload
                   </h3>
                   <p className="text-white/60 mb-6">
-                    Supports PDF, DOCX, TXT files up to 10MB
+                    Supported formats: TXT, MD, JSON, CSV, XML, HTML, CSS, JS
                   </p>
                   <Button
                     onClick={() => document.getElementById('file-input')?.click()}
@@ -223,10 +275,47 @@ export default function DocumentAIPage() {
                     id="file-input"
                     type="file"
                     multiple
-                    accept=".pdf,.docx,.txt,.md"
+                    accept=".txt,.md,.json,.csv,.xml,.html,.css,.js"
                     className="hidden"
                     onChange={(e) => handleFiles(Array.from(e.target.files || []))}
                   />
+                </div>
+
+                {/* API Test Section */}
+                <div className="mt-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-lg font-semibold text-blue-400">API Configuration Test</h4>
+                    <Button
+                      onClick={testAPI}
+                      variant="outline"
+                      size="sm"
+                      className="border-blue-500/50 text-blue-400 hover:bg-blue-500/20"
+                    >
+                      Test API Key
+                    </Button>
+                  </div>
+                  
+                  {apiTestResult && (
+                    <div className={`p-3 rounded border ${
+                      apiTestResult.success 
+                        ? 'bg-green-500/10 border-green-500/30 text-green-400' 
+                        : 'bg-red-500/10 border-red-500/30 text-red-400'
+                    }`}>
+                      <p className="text-sm font-medium">{apiTestResult.message}</p>
+                      {apiTestResult.details && (
+                        <details className="mt-2">
+                          <summary className="cursor-pointer text-xs opacity-80">View Details</summary>
+                          <pre className="mt-2 text-xs bg-black/20 p-2 rounded overflow-x-auto">
+                            {JSON.stringify(apiTestResult.details, null, 2)}
+                          </pre>
+                        </details>
+                      )}
+                    </div>
+                  )}
+                  
+                  <p className="text-xs text-blue-300/80 mt-2">
+                    If the test fails, check your .env.local file and restart the server.
+                  </p>
                 </div>
 
                 {/* Document List */}

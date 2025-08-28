@@ -17,7 +17,9 @@ const handleGlobalAI = async (message: string) => {
     - Technical discussions about his work
     - Contact information and how to reach him
     
-    Be friendly, helpful, and always highlight Danial's strengths and achievements.`
+    Be friendly, helpful, and always highlight Danial's strengths and achievements.
+    
+    IMPORTANT: Respond in plain text only. Do not use any markdown formatting like **, ###, or bullet points. Write in a conversational, natural way without any special formatting.`
   );
 };
 

@@ -12,7 +12,7 @@ import { AIChat } from "@/components/ui/ai-chat"
 import { aiService } from "@/lib/ai-service"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { 
   Github, 
   Linkedin, 
@@ -37,6 +37,18 @@ export default function Home() {
   const [showCareerAssistant, setShowCareerAssistant] = useState(false);
   const [showSmartContact, setShowSmartContact] = useState(false);
   const [contactContext, setContactContext] = useState<'recruiter' | 'student' | 'collaborator' | 'general'>('general');
+
+  // Check if API key is configured on component mount
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_CHUTES_API_KEY) {
+      console.warn("🤖 AI Chatbot Setup Required:");
+      console.warn("1. Get a free API key from https://chutes.ai");
+      console.warn("2. Create a .env.local file in the project root");
+      console.warn("3. Add: NEXT_PUBLIC_CHUTES_API_KEY=your_api_key_here");
+      console.warn("4. Restart the development server");
+      console.warn("The chatbot will work with fallback responses until configured.");
+    }
+  }, []);
 
   const typingTexts = [
     "Full-Stack Developer 🚀",
