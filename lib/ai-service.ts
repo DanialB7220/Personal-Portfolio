@@ -449,7 +449,7 @@ export const aiService = new AIService();
 export type { ChatMessage };
 
 // Test function to verify API key
-export async function testAPIKey(): Promise<{ success: boolean; message: string; details?: any }> {
+export async function testAPIKey(): Promise<{ success: boolean; message: string; details?: string }> {
   const service = new AIService();
   
   if (!service['apiKey']) {

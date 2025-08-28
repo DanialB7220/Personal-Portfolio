@@ -7,7 +7,7 @@ import { testAPIKey } from "@/lib/ai-service";
 import { Brain, CheckCircle, XCircle, Loader2 } from "lucide-react";
 
 export default function APITestPage() {
-  const [testResult, setTestResult] = useState<any>(null);
+  const [testResult, setTestResult] = useState<{ success: boolean; message: string; details?: string } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const runTest = async () => {

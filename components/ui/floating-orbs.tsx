@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 
 interface Orb {
@@ -21,14 +21,14 @@ export function FloatingOrbs({ count = 8, className = "" }: FloatingOrbsProps) {
   const [orbs, setOrbs] = useState<Orb[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const colors = [
+  const colors = useMemo(() => [
     "rgba(99, 102, 241, 0.6)",
     "rgba(139, 92, 246, 0.6)", 
     "rgba(6, 182, 212, 0.6)",
     "rgba(16, 185, 129, 0.6)",
     "rgba(245, 158, 11, 0.6)",
     "rgba(239, 68, 68, 0.6)",
-  ];
+  ], []);
 
   useEffect(() => {
     const newOrbs: Orb[] = Array.from({ length: count }, (_, i) => ({

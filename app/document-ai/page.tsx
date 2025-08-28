@@ -38,7 +38,7 @@ export default function DocumentAIPage() {
   const [selectedDocument, setSelectedDocument] = useState<UploadedDocument | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [showChat, setShowChat] = useState(false);
-  const [apiTestResult, setApiTestResult] = useState<any>(null);
+  const [apiTestResult, setApiTestResult] = useState<{ success: boolean; message: string; details?: string } | null>(null);
 
   const handleRAGQuery = async (message: string) => {
     if (!selectedDocument) {
