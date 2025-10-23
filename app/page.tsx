@@ -9,6 +9,7 @@ import { PerformanceOptimizedBackground } from "@/components/ui/performance-opti
 import { TypingAnimation } from "@/components/ui/typing-animation"
 import { SkillRadar } from "@/components/ui/skill-radar"
 import { AIChat } from "@/components/ui/ai-chat"
+import { ResumeDownload } from "@/components/ui/resume-download"
 import { aiService } from "@/lib/ai-service"
 import Link from "next/link"
 import { motion } from "framer-motion"
@@ -30,7 +31,8 @@ import {
   Zap,
   Code,
   MessageSquareText,
-  Users
+  Users,
+  FileText
 } from "lucide-react"
 
 export default function Home() {
@@ -210,6 +212,12 @@ export default function Home() {
                 GitHub
               </Link>
             </Button>
+
+            <ResumeDownload
+              variant="outline"
+              size="lg"
+              className="border-white/20 text-white hover:bg-white/10 px-8 py-4"
+            />
           </motion.div>
 
           {/* Real Stats Section */}
@@ -509,7 +517,7 @@ export default function Home() {
               Ready to collaborate on innovative projects? Let&apos;s connect and create something extraordinary together.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="grid md:grid-cols-4 gap-8 mb-12">
               {[
                 {
                   icon: <Mail className="w-12 h-12" />,
@@ -534,6 +542,15 @@ export default function Home() {
                   link: "https://www.linkedin.com/in/danial-bhatti-7b9a9728a/",
                   text: "Connect",
                   color: "text-purple-400"
+                },
+                {
+                  icon: <FileText className="w-12 h-12" />,
+                  title: "Resume",
+                  description: "Download my latest resume and portfolio",
+                  link: "#",
+                  text: "Download",
+                  color: "text-green-400",
+                  isResume: true
                 }
               ].map((contact, index) => (
                 <motion.div
@@ -554,11 +571,18 @@ export default function Home() {
                     <h3 className="text-xl font-semibold mb-2 text-white">{contact.title}</h3>
                     <p className="text-white mb-4 opacity-80">{contact.description}</p>
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button asChild className="w-full bg-gradient-to-r from-primary to-accent" variant={index === 0 ? "default" : "outline"}>
-                        <Link href={contact.link} target={index > 0 ? "_blank" : undefined}>
-                          {contact.text}
-                        </Link>
-                      </Button>
+                      {contact.isResume ? (
+                        <ResumeDownload 
+                          className="w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600" 
+                          variant="default"
+                        />
+                      ) : (
+                        <Button asChild className="w-full bg-gradient-to-r from-primary to-accent" variant={index === 0 ? "default" : "outline"}>
+                          <Link href={contact.link} target={index > 0 ? "_blank" : undefined}>
+                            {contact.text}
+                          </Link>
+                        </Button>
+                      )}
                     </motion.div>
                   </HolographicCard>
                 </motion.div>
